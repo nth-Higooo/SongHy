@@ -2,410 +2,1241 @@
 <html lang="vi">
   <head>
     <meta charset="UTF-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0, maximum-scale=5.0"
-    />
-    <title>Song Hỷ Lâm Nguy - Cảm Ơn Bạn!</title>
-    <meta
-      name="description"
-      content="Cảm ơn bạn đã xem phim Song Hỷ Lâm Nguy và ủng hộ chị MisThy. Tham gia Giveaway ngay!"
-    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="./assests/logo.png" />
+
+    <title>Song Hỷ Lâm Nguy – FC MisThy</title>
     <link
-      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;800&family=Inter:wght@300;400;500;600&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Estonia&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Grenze:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Estonia&family=Grenze:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&display=swap"
       rel="stylesheet"
     />
     <style>
       :root {
-        --gold: #d4a843;
-        --gold-light: #f0d68a;
-        --gold-dark: #b8922f;
-        --red-deep: #8b1a1a;
-        --red-dark: #5c0e0e;
-        --bg-card: rgba(20, 15, 10, 0.85);
-        --text-light: #f5f0e8;
-        --text-muted: #b5a89a;
-      }
-      .script-font {
-        font-family: "Estonia", cursive;
-        letter-spacing: 1px;
-      }
-      .grenze-thin {
-        font-family: "Grenze", serif;
-        font-weight: 100;
-        font-style: normal;
+        --ink: #0d0a08;
+        --ink-mid: #141008;
+        --ink-soft: #1c1610;
+        --ink-card: #2a1f14;
+        --gold: #c9a84c;
+        --gold-bright: #e8c96a;
+        --gold-pale: #f2dfa0;
+        --gold-dim: #7a6128;
+        --ivory: #ede0c4;
+        --ivory-muted: #b8a882;
+        --ivory-dim: #7a6e57;
+        --border: rgba(201, 168, 76, 0.18);
+        --border-glow: rgba(232, 201, 106, 0.45);
       }
 
-      * {
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
         margin: 0;
         padding: 0;
-        box-sizing: border-box;
+      }
+      html {
+        scroll-behavior: smooth;
       }
 
       body {
-        font-family: "Inter", sans-serif;
-        background: #0d0808;
-        background: linear-gradient(
-          180deg,
-          #0d0808 0%,
-          #4b1616 60%,
-          #221612 100%
-        );
-        color: var(--text-light);
+        background:
+          radial-gradient(circle at 30% 20%, #2a0000, transparent 40%),
+          radial-gradient(circle at 70% 60%, #1a0000, transparent 50%),
+          linear-gradient(180deg, #0b0000 0%, #140000 40%, #000000 100%);
+        color: var(--ivory);
+        font-family: "Grenze", serif;
         min-height: 100vh;
         overflow-x: hidden;
-        line-height: 1.6;
+        font-weight: 400;
       }
 
-      /* Animated background particles */
-      .particles {
+      /* FILM GRAIN */
+      body::after {
+        content: "";
         position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
+        inset: 0;
+        z-index: -2;
         pointer-events: none;
-        z-index: 0;
+
+        background-image:
+          radial-gradient(
+            circle,
+            rgba(255, 80, 80, 0.08) 1.2px,
+            transparent 1px
+          ),
+          radial-gradient(
+            circle,
+            rgba(255, 233, 120, 0.104) 0.8px,
+            transparent 1px
+          );
+
+        background-size:
+          60px 60px,
+          90px 90px;
+        animation: floatBubbles 5s linear infinite;
       }
 
-      .particle {
-        position: absolute;
-        background: var(--gold);
-        border-radius: 50%;
-        opacity: 0;
-        animation: floatUp linear infinite;
-      }
-
-      @keyframes floatUp {
-        0% {
-          transform: translateY(105vh) scale(0);
-          opacity: 0;
+      @keyframes floatBubbles {
+        from {
+          transform: translateY(0);
         }
-        10% {
-          opacity: 0.6;
-        }
-        90% {
-          opacity: 0.2;
-        }
-        100% {
-          transform: translateY(-10vh) scale(1);
-          opacity: 0;
+        to {
+          transform: translateY(-200px);
         }
       }
-
-      .container {
-        width: 100%;
-        max-width: 800px;
-        margin: 0 auto;
-        /* Padding bottom để không chạm đáy, padding top = 0 để poster sát đỉnh */
-        padding: 0 0 60px;
-        position: relative;
+      /* VIGNETTE */
+      body::before {
+        content: "";
+        position: fixed;
+        inset: 0;
         z-index: 1;
-      }
-
-      /* ===== HERO POSTER - FIX: SÁT MÉP, KHÔNG BỊ CẮT ===== */
-      .hero-poster {
-        position: relative;
-        width: 100%;
-        line-height: 0; /* Loại bỏ khoảng trống thừa dưới ảnh */
-        overflow: hidden;
-      }
-
-      .hero-poster img {
-        width: 100%;
-        height: auto; /* Tự động theo tỉ lệ ảnh gốc, không lo bị cắt */
-        display: block;
-      }
-
-      .hero-overlay {
-        position: absolute;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        height: 35%; /* chỉ fade phần đáy */
-        background: linear-gradient(
-          to bottom,
-          rgba(85, 73, 41, 0.034) 0%,
-          rgba(75, 22, 22, 0.479) 60%,
-          #220505 100%
+        pointer-events: none;
+        background: radial-gradient(
+          ellipse at center,
+          transparent 50%,
+          rgba(0, 0, 0, 0.192) 100%
         );
       }
 
-      /* Content Wrapper để đẩy nội dung vào trong lề (trừ poster) */
-      .content-padding {
-        padding: 0 20px;
+      main {
+        position: relative;
+        z-index: 2;
       }
 
-      /* ===== CARDS ===== */
-      .card {
-        background: var(--bg-card);
-        border: 1px solid rgba(212, 168, 67, 0.15);
-        border-radius: 16px;
-        padding: 30px 25px;
-        margin-bottom: 25px;
-        backdrop-filter: blur(20px);
-        -webkit-backdrop-filter: blur(20px);
-        transition: transform 0.3s ease;
-      }
-
-      .thank-you-card {
-        text-align: center;
-        margin-bottom: 10px;
-      }
-
-      .thank-you-card p {
-        font-family: "Grenze", sans-serif;
-        font-weight: 300;
-        font-size: clamp(1.2rem, 3vw, 2.8rem);
-      }
-
-      .highlight {
-        font-family: "Estonia", cursive;
-        font-size: clamp(2rem, 6vw, 2.8rem);
-        color: var(--gold);
-        font-weight: 600;
-      }
-      .highlight-title {
-        font-family: "Estonia", cursive;
-        font-size: clamp(3rem, 6vw, 2.8rem);
-        color: var(--gold);
-        font-weight: 600;
-      }
-
-      /* Giveaway Section */
-      .card-header {
-        display: flex;
-        align-items: center;
-        gap: 12px;
-        margin-bottom: 20px;
-      }
-      .icon-badge {
-        width: 45px;
-        height: 45px;
-        background: linear-gradient(135deg, var(--gold-dark), var(--gold));
-        border-radius: 10px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 20px;
-        flex-shrink: 0;
-      }
-
-      .giveaway-steps {
-        display: flex;
-        flex-direction: column;
-        gap: 12px;
-        margin: 20px 0;
-      }
-      .giveaway-step {
-        display: flex;
-        gap: 12px;
-        padding: 12px;
-        background: rgba(212, 168, 67, 0.05);
-        border-radius: 10px;
-        border: 1px solid rgba(212, 168, 67, 0.1);
-      }
-      .step-number {
-        width: 28px;
-        height: 28px;
-        border-radius: 50%;
-        background: var(--red-deep);
-        color: var(--gold);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-weight: bold;
-        flex-shrink: 0;
-        font-size: 14px;
-      }
-
-      .cta-button {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 10px;
-        padding: 15px 25px;
-        background: linear-gradient(135deg, var(--gold-dark), var(--gold));
-        color: #000;
-        text-decoration: none;
-        border-radius: 50px;
-        font-weight: 700;
-        font-size: 15px;
-        margin-top: 10px;
-        box-shadow: 0 4px 15px rgba(212, 168, 67, 0.3);
-      }
-
-      .cinetour-image img {
+      /* ── POSTER ── */
+      .poster-wrap {
         width: 100%;
-        border-radius: 10px;
-        border: 1px solid rgba(212, 168, 67, 0.2);
+        line-height: 0;
+        position: relative;
+      }
+      .poster-wrap::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 100px;
+        background: linear-gradient(to bottom, transparent, var(--ink));
+        pointer-events: none;
+      }
+      .poster-wrap img {
+        width: 100%;
+        display: block;
+        object-fit: cover;
       }
 
-      .divider {
+      /* ── FILM STRIP ── */
+      .film-strip {
+        width: 100%;
+        height: 20px;
+        background: var(--ink-soft);
         display: flex;
         align-items: center;
-        justify-content: center;
-        gap: 5px;
-        margin: 10px 0;
-        color: var(--gold);
+        overflow: hidden;
+        border-top: 1px solid rgba(255, 255, 255, 0.04);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.04);
       }
-      .divider-line {
-        flex: 0.5;
+      .film-holes {
+        display: flex;
+        gap: 10px;
+        padding: 0 6px;
+        animation: film-scroll 10s linear infinite;
+      }
+      .film-hole {
+        width: 11px;
+        height: 11px;
+        border-radius: 2px;
+        background: var(--ink);
+        border: 1px solid rgba(255, 255, 255, 0.07);
+        flex-shrink: 0;
+      }
+      @keyframes film-scroll {
+        from {
+          transform: translateX(0);
+        }
+        to {
+          transform: translateX(-50%);
+        }
+      }
+
+      /* ── LAYOUT ── */
+      .section {
+        padding: 36px 20px;
+        max-width: 480px;
+        margin: 0 auto;
+      }
+
+      /* ── ORNAMENTAL RULE ── */
+      .rule {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        margin-bottom: 28px;
+        color: var(--gold-dim);
+      }
+      .rule::before,
+      .rule::after {
+        content: "";
+        flex: 1;
         height: 1px;
         background: linear-gradient(
-          90deg,
+          to right,
           transparent,
-          var(--gold),
+          var(--gold-dim),
           transparent
         );
       }
 
-      .footer {
+      /* ── THANK-YOU CARD ── */
+      .ty-card {
+        position: relative;
+        background: var(--ink-card);
+        border: 1px solid var(--border);
+        border-radius: 3px;
+        padding: 44px 28px 40px;
         text-align: center;
-        margin-top: 40px;
-        opacity: 0.7;
-        font-size: 13px;
+        overflow: hidden;
+      }
+      .ty-card::before {
+        content: "";
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        width: 36px;
+        height: 36px;
+        border-top: 1px solid var(--gold-dim);
+        border-left: 1px solid var(--gold-dim);
+        opacity: 0.4;
+      }
+      .ty-card::after {
+        content: "";
+        position: absolute;
+        bottom: 10px;
+        right: 10px;
+        width: 36px;
+        height: 36px;
+        border-bottom: 1px solid var(--gold-dim);
+        border-right: 1px solid var(--gold-dim);
+        opacity: 0.4;
+      }
+      .ty-card,
+      .ga-card,
+      .m-card {
+        background: linear-gradient(160deg, #2a1f14, #1c140c);
+        box-shadow:
+          0 0 0 1px rgba(201, 168, 76, 0.08),
+          0 8px 30px rgba(0, 0, 0, 0.6);
+      }
+      .ty-bg-char {
+        position: absolute;
+        font-size: 200px;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        color: rgba(201, 168, 76, 0.03);
+        font-family: serif;
+        pointer-events: none;
+        user-select: none;
+        line-height: 1;
+      }
+      .ty-card p {
+        font-family: "Grenze", serif;
+        font-weight: 300;
+        font-size: 18px;
+        line-height: 1.95;
+        color: var(--ivory-muted);
+        letter-spacing: 0.03em;
+        position: relative;
+        z-index: 1;
+      }
+      .highlight-title {
+        font-family: "Estonia", cursive;
+
+        font-size: 36px;
+        color: var(--gold-bright);
+        display: block;
+        line-height: 1.2;
+        text-shadow: 0 0 28px rgba(232, 201, 106, 0.22);
+        margin: 4px 0;
+      }
+      .highlight {
+        font-family: "Estonia", cursive;
+        font-size: 26px;
+        color: var(--gold);
+        text-shadow: 0 0 16px rgba(201, 168, 76, 0.2);
       }
 
-      /* Mobile Optimizations */
-      @media (max-width: 480px) {
-        .content-padding {
-          padding: 0 15px;
+      /* ── GIVEAWAY CARD ── */
+      .ga-card {
+        background: var(--ink-card);
+        border: 1px solid var(--border);
+        border-radius: 3px;
+        overflow: hidden;
+      }
+      .ga-header {
+        padding: 26px 28px 22px;
+        border-bottom: 1px solid var(--border);
+        background: linear-gradient(160deg, #2a1408, var(--ink-card));
+        position: relative;
+        text-align: center; /* 👈 thêm */
+      }
+      .ga-header::after {
+        content: "";
+        position: absolute;
+        bottom: -1px;
+        left: 28px;
+        right: 28px;
+        height: 1px;
+        background: linear-gradient(
+          to right,
+          transparent,
+          var(--gold-dim),
+          transparent
+        );
+      }
+      .ga-eyebrow {
+        font-family: "Grenze", serif;
+        font-size: 18px;
+        letter-spacing: 0.1em;
+        color: var(--gold);
+        text-transform: uppercase;
+        font-weight: 500;
+      }
+
+      .ga-body {
+        padding: 12px 15px 0;
+      }
+      .ga-desc {
+        font-size: 15px;
+        color: var(--ivory-dim);
+        margin-bottom: 22px;
+        line-height: 1.7;
+        font-weight: 300;
+      }
+
+      /* STEPS */
+      .giveaway-steps {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        margin-bottom: 28px;
+      }
+      .giveaway-step {
+        display: flex;
+        align-items: flex-start;
+        gap: 16px;
+        padding: 14px 16px;
+        background: rgba(255, 255, 255, 0.025);
+        border: 1px solid var(--border);
+        border-radius: 2px;
+        transition:
+          background 0.25s,
+          border-color 0.25s;
+      }
+      .giveaway-step:hover {
+        background: rgba(201, 168, 76, 0.06);
+        border-color: rgba(201, 168, 76, 0.28);
+      }
+      .step-number {
+        width: 30px;
+        height: 30px;
+        border: 1px solid var(--gold-dim);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: "Estonia", cursive;
+        font-size: 18px;
+        color: var(--gold);
+        flex-shrink: 0;
+        margin-top: 2px;
+      }
+      .step-content {
+        font-size: 15px;
+        line-height: 1.6;
+        color: var(--ivory);
+        font-weight: 300;
+        padding-top: 4px;
+      }
+      .step-content strong {
+        color: var(--gold);
+        font-weight: 500;
+      }
+
+      /* GIFTS */
+      .gift-label {
+        font-family: "Grenze", serif;
+        font-size: 11px;
+        letter-spacing: 0.18em;
+        color: var(--gold-dim);
+        text-transform: uppercase;
+        margin-bottom: 12px;
+        font-weight: 500;
+      }
+      .gift-row {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 10px;
+        margin-bottom: 26px;
+      }
+      .gift-item {
+        aspect-ratio: 1;
+        border: 1px solid var(--border);
+        border-radius: 2px;
+        overflow: hidden;
+        position: relative;
+        background: var(--ink-soft);
+        cursor: pointer;
+      }
+      .gift-item::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          to bottom,
+          transparent 50%,
+          rgba(0, 0, 0, 0.68)
+        );
+      }
+      .gift-placeholder {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        transition: transform 0.35s;
+      }
+      .gift-item:hover .gift-placeholder {
+        transform: scale(1.05);
+      }
+      .gift-placeholder .icon {
+        font-size: 30px;
+      }
+      .gift-placeholder .name {
+        font-family: "Grenze", serif;
+        font-size: 11px;
+        color: var(--ivory-muted);
+        text-align: center;
+        padding: 0 6px;
+      }
+      .gift-badge {
+        position: absolute;
+        bottom: 7px;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 2;
+        background: rgba(201, 168, 76, 0.12);
+        border: 1px solid rgba(201, 168, 76, 0.3);
+        color: var(--gold-pale);
+        font-family: "Grenze", serif;
+        font-size: 10px;
+        letter-spacing: 0.07em;
+        padding: 2px 8px;
+        border-radius: 20px;
+        white-space: nowrap;
+      }
+
+      /* CTA */
+      .ga-footer {
+        padding: 0 28px 28px;
+      }
+      .btn-detail {
+        width: 100%;
+        padding: 15px;
+        background: transparent;
+        border: 1px solid var(--gold-dim);
+        color: var(--gold);
+        font-family: "Grenze", serif;
+        font-weight: 500;
+        font-size: 15px;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        cursor: pointer;
+        border-radius: 2px;
+        position: relative;
+        overflow: hidden;
+        transition:
+          color 0.3s,
+          border-color 0.3s;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+      }
+      .btn-detail::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: var(--gold);
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform 0.38s cubic-bezier(0.4, 0, 0.2, 1);
+        z-index: 0;
+      }
+      .btn-detail:hover::before {
+        transform: scaleX(1);
+      }
+      .btn-detail:hover {
+        color: var(--ink);
+        border-color: var(--gold);
+      }
+      .btn-detail span,
+      .btn-detail svg {
+        position: relative;
+        z-index: 1;
+      }
+
+      /* ── ROADMAP ── */
+      .roadmap-section {
+        padding: 44px 20px 64px;
+        max-width: 480px;
+        margin: 0 auto;
+      }
+      .roadmap-heading {
+        text-align: center;
+        margin-bottom: 36px;
+        text-transform: uppercase;
+      }
+      .roadmap-heading h2 {
+        font-family: "Estonia", cursive;
+        font-size: 40px;
+        color: var(--gold-bright);
+        text-shadow: 0 0 32px rgba(232, 201, 106, 0.2);
+        line-height: 1;
+        margin-bottom: 10px;
+      }
+      .roadmap-heading p {
+        font-family: "Grenze", serif;
+        font-size: 12px;
+        color: var(--ivory-dim);
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        font-weight: 300;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+      }
+      .live-dot {
+        width: 7px;
+        height: 7px;
+        background: #5a9e7a;
+        border-radius: 50%;
+        flex-shrink: 0;
+        animation: blink 2s ease-in-out infinite;
+      }
+      @keyframes blink {
+        0%,
+        100% {
+          box-shadow: 0 0 0 0 rgba(90, 158, 122, 0.5);
         }
-        .card {
-          padding: 20px 15px;
+        50% {
+          box-shadow: 0 0 0 6px rgba(90, 158, 122, 0);
         }
-        .hero-overlay {
-          height: 60%;
-        } /* Gradient cao hơn trên mobile để hòa quyện màu tốt hơn */
+      }
+
+      /* road spine */
+      .roadmap {
+        position: relative;
+      }
+      .road-spine {
+        position: absolute;
+        left: 50%;
+        top: 12px;
+        bottom: 12px;
+        width: 1px;
+        transform: translateX(-50%);
+        background: linear-gradient(
+          to bottom,
+          transparent 0%,
+          var(--gold-dim) 8%,
+          var(--gold-dim) 92%,
+          transparent 100%
+        );
+        z-index: 1;
+        overflow: hidden;
+      }
+      .road-spine::after {
+        content: "";
+        position: absolute;
+        left: -1px;
+        width: 3px;
+        height: 50px;
+        background: linear-gradient(
+          to bottom,
+          transparent,
+          var(--gold-bright),
+          transparent
+        );
+        top: -50px;
+        animation: spine-travel 4s linear infinite;
+      }
+      @keyframes spine-travel {
+        to {
+          top: calc(100% + 50px);
+        }
+      }
+
+      .milestones {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .milestone {
+        display: grid;
+        grid-template-columns: 1fr 44px 1fr;
+        align-items: start;
+        padding-bottom: 44px;
+        transition: opacity 0.4s;
+      }
+      .milestone:last-child {
+        padding-bottom: 0;
+      }
+
+      .m-spine {
+        display: flex;
+        justify-content: center;
+        padding-top: 16px;
+        position: relative;
+        z-index: 3;
+      }
+      .m-dot {
+        width: 16px;
+        height: 16px;
+        border-radius: 50%;
+        border: 1.5px solid var(--gold-dim);
+        background: var(--ink);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition:
+          box-shadow 0.4s,
+          border-color 0.4s;
+      }
+      .m-dot-inner {
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: var(--gold-dim);
+      }
+
+      .m-card {
+        background: var(--ink-card);
+        border: 1px solid var(--border);
+        border-radius: 2px;
+        padding: 14px 14px 16px;
+      }
+
+      /* alternating sides */
+      .milestone:nth-child(odd) .m-left {
+        grid-column: 1;
+      }
+      .milestone:nth-child(odd) .m-spine {
+        grid-column: 2;
+      }
+      .milestone:nth-child(odd) .m-right {
+        grid-column: 3;
+        visibility: hidden;
+        pointer-events: none;
+      }
+
+      .milestone:nth-child(even) .m-left {
+        grid-column: 1;
+        visibility: hidden;
+        pointer-events: none;
+      }
+      .milestone:nth-child(even) .m-spine {
+        grid-column: 2;
+      }
+      .milestone:nth-child(even) .m-right {
+        grid-column: 3;
+      }
+
+      .m-card-num {
+        font-family: "Grenze", serif;
+        font-size: 10px;
+        letter-spacing: 0.15em;
+        color: var(--gold-dim);
+        text-transform: uppercase;
+        margin-bottom: 4px;
+        font-weight: 500;
+      }
+      .m-card-city {
+        font-family: "Estonia", cursive;
+        font-size: 22px;
+        color: var(--gold-bright);
+        line-height: 1.1;
+        margin-bottom: 3px;
+      }
+      .m-card-venue {
+        font-size: 12px;
+        color: var(--ivory-dim);
+        line-height: 1.4;
+        margin-bottom: 8px;
+        font-weight: 300;
+      }
+      .m-card-date {
+        font-size: 12px;
+        color: var(--ivory-muted);
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        font-weight: 300;
+      }
+      .m-card-date svg {
+        opacity: 0.5;
+        flex-shrink: 0;
+      }
+
+      /* tags */
+      .tag {
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+        font-family: "Grenze", serif;
+        font-size: 10px;
+        letter-spacing: 0.08em;
+        padding: 2px 9px 2px 7px;
+        border-radius: 2px;
+        margin-bottom: 8px;
+        font-weight: 500;
+      }
+      .tag-done {
+        background: rgba(90, 158, 122, 0.1);
+        border: 1px solid rgba(90, 158, 122, 0.22);
+        color: #7bc4a0;
+      }
+      .tag-upcoming {
+        background: rgba(232, 201, 106, 0.08);
+        border: 1px solid rgba(232, 201, 106, 0.28);
+        color: var(--gold-bright);
+      }
+      .tag-tbd {
+        background: rgba(255, 255, 255, 0.04);
+        border: 1px solid rgba(255, 255, 255, 0.09);
+        color: var(--ivory-dim);
+      }
+
+      /* states */
+      .milestone.past {
+        opacity: 0.3;
+      }
+      .milestone.tbd {
+        opacity: 0.42;
+      }
+      .milestone.tbd .m-card {
+        border-style: dashed;
+      }
+      .milestone.tbd .m-dot {
+        border-color: rgba(201, 168, 76, 0.18);
+      }
+      .milestone.tbd .m-dot-inner {
+        background: rgba(201, 168, 76, 0.18);
+      }
+
+      .milestone.upcoming .m-dot {
+        width: 20px;
+        height: 20px;
+        border: 1.5px solid var(--gold-bright);
+        animation: glow-dot 2.5s ease-in-out infinite;
+      }
+      .milestone.upcoming .m-dot-inner {
+        width: 8px;
+        height: 8px;
+        background: var(--gold-bright);
+      }
+      .milestone.upcoming .m-card {
+        border-color: rgba(232, 201, 106, 0.32);
+        box-shadow:
+          0 0 0 1px rgba(232, 201, 106, 0.05),
+          0 8px 28px rgba(0, 0, 0, 0.4);
+      }
+      @keyframes glow-dot {
+        0%,
+        100% {
+          box-shadow:
+            0 0 0 5px rgba(232, 201, 106, 0.07),
+            0 0 12px rgba(232, 201, 106, 0.22);
+        }
+        50% {
+          box-shadow:
+            0 0 0 9px rgba(232, 201, 106, 0.03),
+            0 0 24px rgba(232, 201, 106, 0.48);
+        }
+      }
+
+      /* ── FOOTER ── */
+      .page-footer {
+        text-align: center;
+        padding: 16px 20px 20px;
+        font-family: "Grenze", serif;
+        font-size: 12px;
+        font-weight: 300;
+        letter-spacing: 0.14em;
+        color: rgba(184, 168, 130, 0.22);
+        text-transform: uppercase;
+      }
+      .page-footer em {
+        font-family: "Estonia", cursive;
+        font-style: normal;
+        font-size: 16px;
+        color: rgba(201, 168, 76, 0.28);
       }
     </style>
   </head>
   <body>
-    <div class="particles" id="particles"></div>
-
-    <div class="container">
-      <section class="hero-poster">
+    <main>
+      <!-- POSTER -->
+      <div class="poster-wrap">
         <img
           src="./assests/poster-landscape.png"
-          alt="Song Hỷ Lâm Nguy Poster"
+          alt="Song Hỷ Lâm Nguy – Poster chính thức"
         />
-        <div class="hero-overlay"></div>
-      </section>
+      </div>
 
-      <div class="content-padding">
-        <div class="divider">
-          <div class="divider-line"></div>
-          <div class="divider-icon">✦</div>
-          <div class="divider-line"></div>
+      <!-- film strip top -->
+      <div class="film-strip" aria-hidden="true">
+        <div class="film-holes" style="animation-direction: reverse">
+          <div class="film-hole"></div>
+          <div class="film-hole"></div>
+          <div class="film-hole"></div>
+          <div class="film-hole"></div>
+          <div class="film-hole"></div>
+          <div class="film-hole"></div>
+          <div class="film-hole"></div>
+          <div class="film-hole"></div>
+          <div class="film-hole"></div>
+          <div class="film-hole"></div>
+          <div class="film-hole"></div>
+          <div class="film-hole"></div>
+          <div class="film-hole"></div>
+          <div class="film-hole"></div>
+          <div class="film-hole"></div>
+          <div class="film-hole"></div>
+          <div class="film-hole"></div>
+          <div class="film-hole"></div>
+          <div class="film-hole"></div>
+          <div class="film-hole"></div>
+          <div class="film-hole"></div>
+          <div class="film-hole"></div>
+          <div class="film-hole"></div>
+          <div class="film-hole"></div>
+          <div class="film-hole"></div>
+          <div class="film-hole"></div>
+          <div class="film-hole"></div>
+          <div class="film-hole"></div>
+          <div class="film-hole"></div>
+          <div class="film-hole"></div>
+          <div class="film-hole"></div>
+          <div class="film-hole"></div>
+          <div class="film-hole"></div>
+          <div class="film-hole"></div>
+          <div class="film-hole"></div>
+          <div class="film-hole"></div>
+          <div class="film-hole"></div>
+          <div class="film-hole"></div>
+          <div class="film-hole"></div>
+          <div class="film-hole"></div>
+          <div class="film-hole"></div>
+          <div class="film-hole"></div>
+          <div class="film-hole"></div>
+          <div class="film-hole"></div>
+          <div class="film-hole"></div>
+          <div class="film-hole"></div>
+          <div class="film-hole"></div>
+          <div class="film-hole"></div>
+          <div class="film-hole"></div>
+          <div class="film-hole"></div>
+          <div class="film-hole"></div>
+          <div class="film-hole"></div>
+          <div class="film-hole"></div>
+          <div class="film-hole"></div>
+          <div class="film-hole"></div>
+          <div class="film-hole"></div>
+          <div class="film-hole"></div>
+          <div class="film-hole"></div>
+          <div class="film-hole"></div>
+          <div class="film-hole"></div>
+          <div class="film-hole"></div>
+          <div class="film-hole"></div>
+          <div class="film-hole"></div>
+          <div class="film-hole"></div>
+          <div class="film-hole"></div>
+          <div class="film-hole"></div>
+          <div class="film-hole"></div>
+          <div class="film-hole"></div>
+          <div class="film-hole"></div>
+        </div>
+      </div>
+
+      <!-- THANK YOU -->
+      <div class="section">
+        <div class="rule">
+          <span style="font-size: 14px">✦</span>
+          <span
+            style="
+              font-family: &quot;Grenze&quot;, serif;
+              font-size: 11px;
+              letter-spacing: 0.22em;
+              color: var(--gold-dim);
+              text-transform: uppercase;
+            "
+            >FC MisThy</span
+          >
+          <span style="font-size: 14px">✦</span>
         </div>
 
-        <section class="thank-you-card">
+        <div class="ty-card">
+          <div class="ty-bg-char">囍</div>
           <p>
-            Cảm ơn bạn đã dành thời gian đến rạp thưởng thức bộ phim<br />
-            <span class="highlight-title">Song Hỷ Lâm Nguy</span> <br />
-            ủng hộ <span class="highlight"> MisThy </span> cùng dàn cast! 💛
+            Cảm ơn bạn đã dành thời gian đến rạp thưởng thức bộ phim
+            <span class="highlight-title">Song Hỷ Lâm Nguy</span>
+            ủng hộ <span class="highlight">MisThy</span> cùng dàn cast! 💛
           </p>
-        </section>
-
-        <section class="card giveaway-card">
-          <div class="card-header">
-            <div class="icon-badge">🎁</div>
-            <h2
-              style="
-                font-family: &quot;Playfair Display&quot;, serif;
-                font-size: 22px;
-              "
-            >
-              Giveaway Đặc Biệt
-            </h2>
-          </div>
-          <p style="font-size: 14px; color: var(--text-muted)">
-            Đăng bài review phim để nhận quà tặng hấp dẫn từ FC:
-          </p>
-
-          <div class="giveaway-steps">
-            <div class="giveaway-step">
-              <div class="step-number">1</div>
-              <div class="step-content">Giữ lại vé hoặc ảnh chụp tại rạp.</div>
-            </div>
-            <div class="giveaway-step">
-              <div class="step-number">2</div>
-              <div class="step-content">
-                Đăng review kèm hashtag chương trình.
-              </div>
-            </div>
-            <div class="giveaway-step">
-              <div class="step-number">3</div>
-              <div class="step-content">
-                Gửi link cho FC để bốc thăm may mắn.
-              </div>
-            </div>
-          </div>
-
-          <a href="#" class="cta-button">
-            XEM CHI TIẾT THAM GIA <span>→</span>
-          </a>
-        </section>
-
-        <section class="card cinetour-card">
-          <div class="card-header">
-            <div class="icon-badge">📍</div>
-            <h2
-              style="
-                font-family: &quot;Playfair Display&quot;, serif;
-                font-size: 22px;
-              "
-            >
-              Lịch Cinetour
-            </h2>
-          </div>
-          <div class="cinetour-image">
-            <img src="assets/cinetour-schedule.png" alt="Lịch Cinetour" />
-          </div>
-          <p
-            style="
-              text-align: center;
-              margin-top: 15px;
-              font-size: 12px;
-              color: var(--gold-light);
-            "
-          >
-            ● Cập nhật liên tục
-          </p>
-        </section>
-
-        <footer class="footer">
-          <p>💛 ❤️ 💛</p>
-          <p>@Vườn Mít - FC MisThy</p>
-        </footer>
+        </div>
       </div>
-    </div>
 
-    <script>
-      // Particles generator
-      const container = document.getElementById("particles");
-      for (let i = 0; i < 20; i++) {
-        const p = document.createElement("div");
-        p.className = "particle";
-        p.style.left = Math.random() * 100 + "%";
-        p.style.width = p.style.height = Math.random() * 3 + 1 + "px";
-        p.style.animationDuration = Math.random() * 5 + 5 + "s";
-        p.style.animationDelay = Math.random() * 5 + "s";
-        container.appendChild(p);
-      }
-    </script>
+      <!-- GIVEAWAY -->
+      <div class="section" style="padding-top: 0">
+        <div class="ga-card">
+          <div class="ga-header">
+            <div class="ga-eyebrow">Chương trình GIVEAWAY</div>
+          </div>
+
+          <div class="ga-body">
+            <p class="ga-desc">
+              Đăng bài review phim để nhận quà tặng hấp dẫn từ FC:
+            </p>
+
+            <div class="giveaway-steps">
+              <div class="giveaway-step">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                  Giữ lại vé hoặc ảnh chụp tại rạp.
+                </div>
+              </div>
+              <div class="giveaway-step">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                  Đăng review kèm hashtag chương trình.
+                </div>
+              </div>
+              <div class="giveaway-step">
+                <div class="step-number">3</div>
+                <div class="step-content">
+                  Gửi link bài đăng cho FC để tham gia bốc thăm may mắn.
+                </div>
+              </div>
+            </div>
+
+            <p class="gift-label">Quà tặng giveaway</p>
+            <div class="gift-row">
+              <div class="gift-item">
+                <div class="gift-placeholder">
+                  <div class="icon">🧧</div>
+                  <div class="name">Túi quà FC</div>
+                </div>
+                <!-- <span class="gift-badge">Phần quà 01</span> -->
+              </div>
+              <div class="gift-item">
+                <div class="gift-placeholder">
+                  <div class="icon">📸</div>
+                  <div class="name">Ảnh ký tặng</div>
+                </div>
+                <!-- <span class="gift-badge">Phần quà 02</span> -->
+              </div>
+              <div class="gift-item">
+                <div class="gift-placeholder">
+                  <div class="icon">🎀</div>
+                  <div class="name">Merchandise</div>
+                </div>
+                <!-- <span class="gift-badge">Phần quà 03</span> -->
+              </div>
+            </div>
+          </div>
+
+          <div class="ga-footer">
+            <button class="btn-detail">
+              <svg
+                width="14"
+                height="14"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <circle cx="12" cy="12" r="10" />
+                <line x1="12" y1="8" x2="12" y2="12" />
+                <line x1="12" y1="16" x2="12.01" y2="16" />
+              </svg>
+              <span>Xem chi tiết</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ROADMAP -->
+      <div class="roadmap-section">
+        <div class="roadmap-heading">
+          <h2>Lịch Cinetour</h2>
+          <p><span class="live-dot"></span> Cập nhật liên tục</p>
+        </div>
+
+        <div class="roadmap">
+          <div class="road-spine"></div>
+
+          <div class="milestones">
+            <!-- 01 PAST -->
+            <div class="milestone past">
+              <div class="m-card m-left">
+                <div class="tag tag-done">
+                  <svg
+                    width="9"
+                    height="9"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2.5"
+                  >
+                    <polyline points="20 6 9 17 4 12" />
+                  </svg>
+                  Đã diễn ra
+                </div>
+                <div class="m-card-num">Điểm 01 · Ra mắt</div>
+                <div class="m-card-city">Sài Gòn</div>
+                <div class="m-card-venue">CGV Vincom Center Đồng Khởi</div>
+                <div class="m-card-date">
+                  <svg
+                    width="11"
+                    height="11"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <rect x="3" y="4" width="18" height="18" rx="2" />
+                    <line x1="16" y1="2" x2="16" y2="6" />
+                    <line x1="8" y1="2" x2="8" y2="6" />
+                    <line x1="3" y1="10" x2="21" y2="10" />
+                  </svg>
+                  28.03.2026 · 19:00
+                </div>
+              </div>
+              <div class="m-spine">
+                <div class="m-dot"><div class="m-dot-inner"></div></div>
+              </div>
+              <div class="m-right"></div>
+            </div>
+
+            <!-- 02 UPCOMING -->
+            <div class="milestone upcoming">
+              <div class="m-left"></div>
+              <div class="m-spine">
+                <div class="m-dot"><div class="m-dot-inner"></div></div>
+              </div>
+              <div class="m-card m-right">
+                <div class="tag tag-upcoming">
+                  <span
+                    class="live-dot"
+                    style="
+                      width: 6px;
+                      height: 6px;
+                      background: var(--gold-bright);
+                      animation: none;
+                      box-shadow: 0 0 6px rgba(232, 201, 106, 0.6);
+                    "
+                  ></span>
+                  Sắp tới
+                </div>
+                <div class="m-card-num">Điểm 02 · Cinetour</div>
+                <div class="m-card-city">Hà Nội</div>
+                <div class="m-card-venue">BHD Star Phạm Ngọc Thạch</div>
+                <div class="m-card-date">
+                  <svg
+                    width="11"
+                    height="11"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <rect x="3" y="4" width="18" height="18" rx="2" />
+                    <line x1="16" y1="2" x2="16" y2="6" />
+                    <line x1="8" y1="2" x2="8" y2="6" />
+                    <line x1="3" y1="10" x2="21" y2="10" />
+                  </svg>
+                  05.04.2026 · 18:30
+                </div>
+              </div>
+            </div>
+
+            <!-- 03 TBD -->
+            <div class="milestone tbd">
+              <div class="m-card m-left">
+                <div class="tag tag-tbd">Sắp cập nhật</div>
+                <div class="m-card-num">Điểm 03 · Cinetour</div>
+                <div class="m-card-city">Đà Nẵng</div>
+                <div class="m-card-venue">Địa điểm sẽ thông báo</div>
+                <div class="m-card-date">
+                  <svg
+                    width="11"
+                    height="11"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <circle cx="12" cy="12" r="10" />
+                    <polyline points="12 6 12 12 16 14" />
+                  </svg>
+                  Dự kiến trung tuần 04.2026
+                </div>
+              </div>
+              <div class="m-spine">
+                <div class="m-dot"><div class="m-dot-inner"></div></div>
+              </div>
+              <div class="m-right"></div>
+            </div>
+
+            <!-- 04 TBD -->
+            <div class="milestone tbd">
+              <div class="m-left"></div>
+              <div class="m-spine">
+                <div class="m-dot"><div class="m-dot-inner"></div></div>
+              </div>
+              <div class="m-card m-right">
+                <div class="tag tag-tbd">Sắp cập nhật</div>
+                <div class="m-card-num">Điểm 04 · Cinetour</div>
+                <div class="m-card-city">Cần Thơ</div>
+                <div class="m-card-venue">Địa điểm sẽ thông báo</div>
+                <div class="m-card-date">
+                  <svg
+                    width="11"
+                    height="11"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <circle cx="12" cy="12" r="10" />
+                    <polyline points="12 6 12 12 16 14" />
+                  </svg>
+                  Chưa xác định
+                </div>
+              </div>
+            </div>
+
+            <!-- 05 TBD -->
+            <div class="milestone tbd">
+              <div class="m-card m-left">
+                <div class="tag tag-tbd">Sắp cập nhật</div>
+                <div class="m-card-num">Điểm 05 · Fan Meeting</div>
+                <div class="m-card-city">Sài Gòn</div>
+                <div class="m-card-venue">Buổi kết thúc hành trình</div>
+                <div class="m-card-date">
+                  <svg
+                    width="11"
+                    height="11"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <circle cx="12" cy="12" r="10" />
+                    <polyline points="12 6 12 12 16 14" />
+                  </svg>
+                  Chưa xác định
+                </div>
+              </div>
+              <div class="m-spine">
+                <div class="m-dot"><div class="m-dot-inner"></div></div>
+              </div>
+              <div class="m-right"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- film strip bottom -->
+      <div class="film-strip" aria-hidden="true">
+        <div class="film-holes" style="animation-direction: reverse">
+          <div class="film-hole"></div>
+          <div class="film-hole"></div>
+          <div class="film-hole"></div>
+          <div class="film-hole"></div>
+          <div class="film-hole"></div>
+          <div class="film-hole"></div>
+          <div class="film-hole"></div>
+          <div class="film-hole"></div>
+          <div class="film-hole"></div>
+          <div class="film-hole"></div>
+          <div class="film-hole"></div>
+          <div class="film-hole"></div>
+          <div class="film-hole"></div>
+          <div class="film-hole"></div>
+          <div class="film-hole"></div>
+          <div class="film-hole"></div>
+          <div class="film-hole"></div>
+          <div class="film-hole"></div>
+          <div class="film-hole"></div>
+          <div class="film-hole"></div>
+          <div class="film-hole"></div>
+          <div class="film-hole"></div>
+          <div class="film-hole"></div>
+          <div class="film-hole"></div>
+          <div class="film-hole"></div>
+          <div class="film-hole"></div>
+          <div class="film-hole"></div>
+          <div class="film-hole"></div>
+          <div class="film-hole"></div>
+          <div class="film-hole"></div>
+          <div class="film-hole"></div>
+          <div class="film-hole"></div>
+          <div class="film-hole"></div>
+          <div class="film-hole"></div>
+          <div class="film-hole"></div>
+          <div class="film-hole"></div>
+          <div class="film-hole"></div>
+          <div class="film-hole"></div>
+          <div class="film-hole"></div>
+          <div class="film-hole"></div>
+          <div class="film-hole"></div>
+          <div class="film-hole"></div>
+          <div class="film-hole"></div>
+          <div class="film-hole"></div>
+          <div class="film-hole"></div>
+          <div class="film-hole"></div>
+          <div class="film-hole"></div>
+          <div class="film-hole"></div>
+          <div class="film-hole"></div>
+          <div class="film-hole"></div>
+          <div class="film-hole"></div>
+          <div class="film-hole"></div>
+          <div class="film-hole"></div>
+          <div class="film-hole"></div>
+          <div class="film-hole"></div>
+          <div class="film-hole"></div>
+          <div class="film-hole"></div>
+          <div class="film-hole"></div>
+          <div class="film-hole"></div>
+          <div class="film-hole"></div>
+          <div class="film-hole"></div>
+          <div class="film-hole"></div>
+          <div class="film-hole"></div>
+          <div class="film-hole"></div>
+          <div class="film-hole"></div>
+          <div class="film-hole"></div>
+          <div class="film-hole"></div>
+          <div class="film-hole"></div>
+          <div class="film-hole"></div>
+        </div>
+      </div>
+
+      <div class="page-footer">
+        Made by <em>FC MisThy</em> &nbsp;·&nbsp; Song Hỷ Lâm Nguy 2026
+      </div>
+    </main>
   </body>
 </html>
