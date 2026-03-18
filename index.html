@@ -6,7 +6,8 @@
       name="viewport"
       content="width=device-width, initial-scale=1.0, maximum-scale=5.0"
     />
-    <title>Song Hỷ Lâm Nguy - Cảm Ơn Bạn!</title>
+    <link rel="icon" type="image/svg+xml" href="./assests/logo.png" />
+    <title>Vườn Mít - FC Misthy - Cảm Ơn Bạn!</title>
     <meta
       name="description"
       content="Cảm ơn bạn đã xem phim Song Hỷ Lâm Nguy và ủng hộ chị MisThy. Tham gia Giveaway ngay!"
@@ -273,10 +274,13 @@
       }
 
       .footer {
+        font-family: "Grenze", sans-serif;
+        font-weight: 100;
         text-align: center;
         margin-top: 40px;
-        opacity: 0.7;
-        font-size: 13px;
+        opacity: 0.5;
+        font-size: 18px;
+        margin-bottom: -50px;
       }
 
       /* Mobile Optimizations */
@@ -290,6 +294,20 @@
         .hero-overlay {
           height: 60%;
         } /* Gradient cao hơn trên mobile để hòa quyện màu tốt hơn */
+      }
+      .ph--copyright-thin {
+        display: inline-block;
+        width: 20px;
+        height: 20px;
+        --svg: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 256 256'%3E%3Cpath fill='%23000' d='M128 28a100 100 0 1 0 100 100A100.11 100.11 0 0 0 128 28m0 192a92 92 0 1 1 92-92a92.1 92.1 0 0 1-92 92m35.2-65.59a44 44 0 1 1 0-52.82a4 4 0 0 1-6.4 4.81a36 36 0 1 0 0 43.2a4 4 0 0 1 6.4 4.81'/%3E%3C/svg%3E");
+        background-color: currentColor;
+        -webkit-mask-image: var(--svg);
+        mask-image: var(--svg);
+        -webkit-mask-repeat: no-repeat;
+        mask-repeat: no-repeat;
+        -webkit-mask-size: 100% 100%;
+        mask-size: 100% 100%;
+        margin-bottom: -4px;
       }
     </style>
   </head>
@@ -388,8 +406,7 @@
         </section>
 
         <footer class="footer">
-          <p>💛 ❤️ 💛</p>
-          <p>@Vườn Mít - FC MisThy</p>
+          <p><span class="ph--copyright-thin"></span> Vườn Mít - FC MisThy</p>
         </footer>
       </div>
     </div>
