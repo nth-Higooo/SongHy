@@ -28,9 +28,9 @@ html {
 
 body {
   background:
-    radial-gradient(circle at 30% 20%, #2a0000, transparent 40%),
-    radial-gradient(circle at 70% 60%, #1a0000, transparent 50%),
-    linear-gradient(180deg, #0b0000 0%, #140000 40%, #000000 100%);
+    radial-gradient(circle at 30% 20%, #3a0000, transparent 45%),
+    radial-gradient(circle at 70% 60%, #2a0000, transparent 55%),
+    linear-gradient(180deg, #120000 0%, #1a0000 40%, #050000 100%);
   color: var(--ivory);
   font-family: "Grenze", serif;
   min-height: 100vh;
@@ -72,8 +72,8 @@ body::before {
   pointer-events: none;
   background: radial-gradient(
     ellipse at center,
-    transparent 50%,
-    rgba(0, 0, 0, 0.192) 100%
+    transparent 60%,
+    rgba(0, 0, 0, 0.12) 100% /* 👈 giảm từ 0.192 */
   );
 }
 
@@ -286,12 +286,18 @@ main {
 .roadmap {
   position: relative;
   flex: 1;
+
   overflow-y: auto;
+  overflow-x: hidden; /* 👈 QUAN TRỌNG: chặn kéo ngang */
+
   scroll-snap-type: y mandatory;
   scroll-behavior: smooth;
 
   scrollbar-width: none;
-  padding: 0 14px; /* ✅ FIX: tránh card bị cắt 2 bên */
+
+  padding: 0 14px;
+
+  touch-action: pan-y; /* 👈 mobile chỉ scroll dọc */
 }
 .roadmap::-webkit-scrollbar {
   display: none;
@@ -311,15 +317,14 @@ main {
 .milestone {
   display: flex; /* ✅ FIX: bỏ grid → không còn bị bó giữa */
   justify-content: center;
-
-  height: 120px;
+  min-height: 120px;
   align-items: center;
 
   scroll-snap-align: center;
 
-  opacity: 0.55;
+  opacity: 0.75;
   transform: scale(0.9);
-  filter: brightness(0.8);
+  filter: brightness(0.92);
 
   transition: all 0.45s cubic-bezier(0.2, 0.65, 0.3, 1);
 }
@@ -339,22 +344,58 @@ main {
   text-align: center;
   border: 1px solid var(--border);
   border-radius: 4px;
-  padding: 14px 16px;
-  background: linear-gradient(160deg, #2a1f14, #1c140c);
+  padding: 5px 16px;
+  background: linear-gradient(160deg, #322417, #20160d);
   transition: all 0.35s ease;
   position: relative;
   min-width: 250px;
 }
 
+.m-card-times {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center; /* 👈 center ngang */
+  align-items: center;
+  gap: 8px;
+  margin-top: 8px;
+  text-align: center;
+}
+
+.time-pill {
+  padding: 4px 8px;
+  border-radius: 999px;
+  font-size: 12px;
+  background: rgba(255, 255, 255, 0.12); /* 👈 tăng từ 0.08 */
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(6px);
+}
+.time-pill.active {
+  background: linear-gradient(135deg, #eee8e9, #ffd000);
+  color: #2a1f14;
+  border: none;
+  box-shadow: 0 0 12px rgba(255, 100, 100, 0.6);
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.08);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
 /* ✨ GIVEAWAY STYLE GLOW */
 .milestone.active .m-card {
   border-color: var(--gold-bright);
 
   box-shadow:
-    0 0 0 1px rgba(232, 201, 106, 0.25),
-    0 12px 40px rgba(0, 0, 0, 0.7),
-    0 0 40px rgba(232, 201, 106, 0.35);
-
+    0 0 0 1px rgba(232, 201, 106, 0.35),
+    0 12px 40px rgba(0, 0, 0, 0.6),
+    0 0 60px rgba(232, 201, 106, 0.5);
   background: linear-gradient(160deg, #2f2316, #1a1209);
 }
 
@@ -374,18 +415,14 @@ main {
   pointer-events: none;
 }
 
-/* ===== TEXT ===== */
-.m-card-venue {
-  font-size: 18px;
-  color: var(--gold-bright);
-  margin: 2px 0;
-}
-
 .m-card-date {
-  font-size: 18px;
-  color: var(--ivory-muted);
+  color: #d6c6a0;
 }
 
+.m-card-venue {
+  color: var(--gold-bright);
+  text-shadow: 0 0 6px rgba(232, 201, 106, 0.25);
+}
 /* ===== TAG ===== */
 .tag {
   display: inline-block;

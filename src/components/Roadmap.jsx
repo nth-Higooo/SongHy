@@ -1,74 +1,108 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 
-/* ===== HELPERS ===== */
+/* ===== DATA ===== */
 export const milestones = [
-  // ===== PAST =====
   {
-    city: "Sài Gòn",
-    venue: "CGV Vincom Center Đồng Khởi",
-    date: "20.03.2026 - 19:00",
+    city: "HCM",
+    venue: "Galaxy Kinh Dương Vương",
+    date: "01.04.2026",
+    times: ["19:00", "19:30"],
   },
   {
-    city: "Hải Phòng",
-    venue: "Lotte Cinema Hải Phòng",
-    date: "22.03.2026 · 18:30",
-  },
-
-  // ===== CURRENT (gần hiện tại để test highlight) =====
-  {
-    city: "Hà Nội",
-    venue: "BHD Star Phạm Ngọc Thạch",
-    date: "25.03.2026 - 20:00",
-  },
-
-  // ===== UPCOMING =====
-  {
-    city: "Đà Nẵng",
-    venue: "CGV Vincom Ngô Quyền",
-    date: "27.03.2026 · 19:00",
+    city: "HCM",
+    venue: "CGV Sư Vạn Hạnh",
+    date: "01.04.2026",
+    times: ["20:30", "21:00"],
   },
   {
-    city: "Huế",
-    venue: "Starlight Cinema",
-    date: "30.03.2026 · 18:30",
+    city: "HCM",
+    venue: "Cinestar Quốc Thanh",
+    date: "01.04.2026",
+    times: ["22:00", "22:30"],
   },
   {
-    city: "Cần Thơ",
-    venue: "CGV Sense City",
-    date: "05.04.2026 · 19:00",
-  },
-
-  // ===== TBD (thiếu info) =====
-  {
-    city: "Nha Trang",
+    city: "HCM",
+    venue: "Lotte Cinema Gò Vấp",
+    date: "02.04.2026",
+    times: ["19:00", "19:30"],
   },
   {
-    venue: "Galaxy Cinema",
+    city: "HCM",
+    venue: "BHD Quang Trung",
+    date: "02.04.2026",
+    times: ["20:30"],
   },
   {
-    // hoàn toàn chưa có info
+    city: "HCM",
+    venue: "Beta Quang Trung",
+    date: "02.04.2026",
+    times: ["21:30", "22:00"],
   },
 ];
 
-function parseDate(dateStr) {
-  if (!dateStr) return null;
-  const match = dateStr.match(/(\d{2})\.(\d{2})\.(\d{4}).*?(\d{2}):(\d{2})/);
+/* ===== HELPERS ===== */
+
+function parseDateTime(dateStr, timeStr) {
+  const match = dateStr.match(/(\d{2})\.(\d{2})\.(\d{4})/);
   if (!match) return null;
-  const [, d, m, y, h, min] = match;
+
+  const [, d, m, y] = match;
+  const [h, min] = timeStr.split(":");
+
   return new Date(y, m - 1, d, h, min);
 }
 
-function getStatus(dateStr) {
-  const now = new Date();
-  const date = parseDate(dateStr);
-  if (!date) return "tbd";
+function getGlobalNearest(sorted, now) {
+  let result = {
+    milestoneIndex: -1,
+    timeIndex: -1,
+    time: null,
+  };
 
-  if (now > date) return "past";
+  let minDiff = Infinity;
 
-  const diff = date - now;
-  if (diff < 3 * 60 * 60 * 1000) return "current";
+  sorted.forEach((m, mi) => {
+    m.times?.forEach((t, ti) => {
+      const time = parseDateTime(m.date, t);
+      if (!time) return;
+
+      const diff = time - now;
+
+      if (diff > 0 && diff < minDiff) {
+        minDiff = diff;
+        result = {
+          milestoneIndex: mi,
+          timeIndex: ti,
+          time,
+        };
+      }
+    });
+  });
+
+  return result;
+}
+
+function getStatus(dateStr, times, now) {
+  if (!times?.length) return "tbd";
+
+  const allTimes = times.map((t) => parseDateTime(dateStr, t));
+
+  if (allTimes.every((t) => now > t)) return "past";
+
+  if (allTimes.some((t) => Math.abs(now - t) < 60 * 60 * 1000))
+    return "current";
 
   return "upcoming";
+}
+
+function formatCountdown(diff) {
+  if (diff <= 0) return "Đang diễn ra";
+
+  const h = Math.floor(diff / (1000 * 60 * 60));
+  const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+  const s = Math.floor((diff % (1000 * 60)) / 1000);
+
+  return `${h}h ${m}m ${s}s`;
 }
 
 function safe(v) {
@@ -80,32 +114,47 @@ function safe(v) {
 export default function Roadmap() {
   const containerRef = useRef(null);
   const itemRefs = useRef([]);
+
   const [activeIndex, setActiveIndex] = useState(0);
   const [showJump, setShowJump] = useState(false);
+  const [now, setNow] = useState(new Date());
 
-  /* ===== SORT + LẤY 4 CÁI GẦN NHẤT ===== */
-  const sorted = [...milestones]
-    .map((m) => ({ ...m, parsed: parseDate(m.date) }))
-    .sort((a, b) => (a.parsed || 9999999999) - (b.parsed || 9999999999));
+  /* 🔥 realtime clock */
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setNow(new Date());
+    }, 1000);
 
-  const now = new Date();
+    return () => clearInterval(interval);
+  }, []);
 
-  // tìm index upcoming gần nhất
-  const nearestIndex = sorted.findIndex((m) => m.parsed && m.parsed > now);
+  /* ===== SORT ===== */
+  const sorted = useMemo(() => {
+    return [...milestones]
+      .map((m) => ({
+        ...m,
+        parsed: parseDateTime(m.date, m.times?.[0]),
+      }))
+      .sort((a, b) => (a.parsed || Infinity) - (b.parsed || Infinity));
+  }, []);
 
-  const visibleMilestones = sorted;
+  /* ===== GLOBAL NEAREST ===== */
+  const globalNearest = useMemo(
+    () => getGlobalNearest(sorted, now),
+    [sorted, now],
+  );
 
-  /* ===== SCROLL CENTER DETECT ===== */
+  const nearestIndex = globalNearest.milestoneIndex;
+
+  /* ===== SCROLL ===== */
 
   const scrollToNearest = () => {
     const el = itemRefs.current[nearestIndex];
     if (!el) return;
 
-    el.scrollIntoView({
-      behavior: "smooth",
-      block: "center",
-    });
+    el.scrollIntoView({ behavior: "smooth", block: "center" });
   };
+
   useEffect(() => {
     const container = containerRef.current?.querySelector(".roadmap");
     if (!container) return;
@@ -132,7 +181,6 @@ export default function Roadmap() {
 
       setActiveIndex(closest);
 
-      // check nearest visibility
       const nearestEl = itemRefs.current[nearestIndex];
       if (!nearestEl) return;
 
@@ -164,9 +212,9 @@ export default function Roadmap() {
         <div className="road-spine"></div>
 
         <div className="milestones">
-          {visibleMilestones.map((m, i) => {
+          {sorted.map((m, i) => {
             const isOdd = i % 2 === 0;
-            const status = getStatus(m.date);
+            const status = getStatus(m.date, m.times, now);
             const isActive = i === activeIndex;
 
             const card = (
@@ -183,6 +231,23 @@ export default function Roadmap() {
 
                 <div className="m-card-venue">{safe(m.venue)}</div>
                 <div className="m-card-date">{safe(m.date)}</div>
+
+                <div className="m-card-times">
+                  {m.times?.map((t, idx) => {
+                    const isNearest =
+                      i === globalNearest.milestoneIndex &&
+                      idx === globalNearest.timeIndex;
+
+                    return (
+                      <span
+                        key={idx}
+                        className={`time-pill ${isNearest ? "active" : ""}`}
+                      >
+                        {t}
+                      </span>
+                    );
+                  })}
+                </div>
               </div>
             );
 
@@ -199,15 +264,17 @@ export default function Roadmap() {
                     <div className="m-dot-inner"></div>
                   </div>
                 </div>
+
                 <div className="m-right">{!isOdd ? card : null}</div>
               </div>
             );
           })}
         </div>
       </div>
+
       {showJump && (
         <div className="jump-nearest" onClick={scrollToNearest}>
-          TỚI LỊCH CINETOUR GẦN NHẤT
+          TỚI LỊCH GẦN NHẤT
         </div>
       )}
     </div>
