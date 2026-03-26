@@ -13,7 +13,56 @@
   --border: rgba(201, 168, 76, 0.18);
   --border-glow: rgba(232, 201, 106, 0.45);
 }
+.theme-toggle {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 999;
 
+  width: 38px;
+  height: 38px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  border: none;
+
+  /* 🌙 DARK */
+  background: rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(8px);
+
+  border: 1px solid rgba(255, 255, 255, 0.12);
+
+  color: #fff;
+
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.theme-toggle:hover {
+  transform: scale(1.08);
+  background: rgba(255, 255, 255, 0.15);
+  box-shadow: 0 0 12px rgba(255, 255, 255, 0.2);
+}
+
+/* 🌞 LIGHT */
+body.light .theme-toggle {
+  background: rgba(255, 248, 235, 0.9);
+
+  border: 1px solid rgba(44, 74, 122, 0.2);
+
+  color: #2c4a7a;
+
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+body.light .theme-toggle:hover {
+  background: var(--gold-pale);
+  box-shadow: 0 6px 18px rgba(63, 111, 181, 0.2);
+}
 *,
 *::before,
 *::after {
@@ -238,12 +287,14 @@ main {
 .highlight-title {
   font-family: "Estonia", cursive;
   font-size: 36px;
+  font-weight: 700;
   color: var(--gold-bright);
 }
 
 .highlight {
   font-family: "Estonia", cursive;
   font-size: 26px;
+  font-weight: 600;
   color: var(--gold);
 }
 
@@ -710,4 +761,252 @@ main {
 .btn-detail svg {
   position: relative;
   z-index: 1;
+}
+
+/* ===============LIGHT THEME========================== */
+
+body.light {
+  --ink: #f6efe4;
+  --ink-mid: #efe6d6;
+  --ink-soft: #e4d9c6;
+  --ink-card: #fdf7ec;
+
+  --gold: #2c4a7a;
+  --gold-bright: #3f6fb5;
+  --gold-pale: #e4ecff;
+  --gold-dim: #7c8aa5;
+
+  --ivory: #2b2b2b;
+  --ivory-muted: #6e675c;
+  --ivory-dim: #a09584;
+
+  --border: rgba(44, 74, 122, 0.1);
+  --border-glow: rgba(63, 111, 181, 0.2);
+
+  /* 🎯 BE ĐẬM – ÍT TRẮNG */
+  background:
+    radial-gradient(circle at 20% 15%, #f7f4ef, transparent 35%),
+    radial-gradient(circle at 80% 70%, #e4dccf, transparent 55%),
+    linear-gradient(180deg, #ffdea6 0%, #e4ddd2 45%, #f1dbaf 100%);
+
+  color: var(--ivory);
+}
+
+body.light .poster-wrap::after {
+  background: linear-gradient(to bottom, transparent, #f4ecdf75);
+}
+
+body.light::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -3;
+  pointer-events: none;
+
+  background-image: radial-gradient(
+    circle,
+    rgba(0, 0, 0, 0.05) 1px,
+    transparent 1px
+  );
+
+  background-size: 140px 140px;
+
+  animation: floatDust 18s linear infinite;
+}
+
+body.light::before {
+  background: radial-gradient(
+    ellipse at center,
+    transparent 70%,
+    rgba(0, 0, 0, 0.05) 100%
+  );
+}
+body.light .ty-card,
+body.light .ga-card,
+body.light .m-card {
+  background: linear-gradient(160deg, #ffffff, #f4f7ff);
+
+  box-shadow:
+    0 0 0 1px rgba(44, 74, 122, 0.08),
+    0 10px 25px rgba(44, 74, 122, 0.08);
+
+  border: 1px solid var(--border);
+}
+body.light .milestone.active .m-card {
+  border-color: var(--gold-bright);
+
+  box-shadow:
+    0 0 0 1px rgba(63, 111, 181, 0.25),
+    0 10px 30px rgba(63, 111, 181, 0.15),
+    0 0 40px rgba(63, 111, 181, 0.2);
+
+  background: linear-gradient(160deg, #ffffff, #eaf2ff);
+}
+body.light .highlight-title {
+  color: var(--gold-bright);
+}
+
+body.light .highlight {
+  color: var(--gold);
+}
+
+body.light .ty-card p {
+  color: var(--ivory-muted);
+}
+
+body.light .m-card-venue {
+  color: var(--gold-bright);
+  text-shadow: none;
+}
+
+body.light .m-card-date {
+  color: #000000;
+}
+body.light .tag-past {
+  background: #e6f4ea;
+  color: #2e7d32;
+}
+
+body.light .tag-upcoming {
+  background: #e3edff;
+  color: #2e7d32;
+}
+
+body.light .tag-current {
+  background: #dbe7ff;
+  color: #3f6fb5;
+}
+
+body.light .tag-tbd {
+  background: #f1f1f1;
+  color: #999;
+}
+body.light .time-pill {
+  background: rgba(44, 74, 122, 0.08);
+  border: 1px solid rgba(44, 74, 122, 0.2);
+}
+body.light .time-pill.active {
+  background: linear-gradient(135deg, #254c86, #6fa8ff);
+  color: white;
+  box-shadow: 0 0 10px rgba(63, 111, 181, 0.4);
+}
+body.light .jump-nearest {
+  position: absolute;
+  bottom: 80px;
+  left: 49%;
+  transform: translateX(-50%);
+  z-index: 20;
+
+  padding: 4px 10px;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  font-weight: 600;
+
+  /* 🌿 nền be glass */
+  background: rgba(255, 250, 240, 0.75);
+  backdrop-filter: blur(8px);
+
+  border: 1px solid rgba(44, 74, 122, 0.18);
+  color: var(--gold);
+
+  border-radius: 6px;
+
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+body.light .btn-detail {
+  width: 100%;
+  padding: 15px;
+
+  background: #2c4a7a; /* navy đậm */
+  color: #fff;
+
+  border: 1px solid #2c4a7a;
+
+  font-family: "Grenze", serif;
+  font-size: 15px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+
+  border-radius: 4px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+
+  cursor: pointer;
+
+  transition: all 0.25s ease;
+
+  box-shadow: 0 6px 16px rgba(44, 74, 122, 0.25);
+}
+body.light .btn-detail:hover {
+  background: #3f6fb5; /* navy sáng hơn */
+  border-color: #3f6fb5;
+
+  box-shadow: 0 8px 22px rgba(63, 111, 181, 0.35);
+}
+body.light .btn-detail svg {
+  opacity: 0.9;
+}
+body.light .btn-detail::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    120deg,
+    transparent 30%,
+    rgba(255, 255, 255, 0.25),
+    transparent 70%
+  );
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+body.light .gift-item {
+  aspect-ratio: 1;
+
+  background: linear-gradient(160deg, #fdf7ec, #efe4d2);
+
+  border: 1px solid rgba(44, 74, 122, 0.12);
+  border-radius: 2px;
+
+  overflow: hidden;
+  position: relative;
+
+  cursor: pointer;
+
+  transition: all 0.3s ease;
+}
+body.light .gift-item::after {
+  background: linear-gradient(to bottom, transparent 60%, rgba(0, 0, 0, 0.08));
+}
+body.light .page-footer {
+  text-align: center;
+  padding: 20px 16px;
+
+  font-size: 12px;
+  letter-spacing: 0.14em;
+
+  color: var(--ivory-dim);
+
+  border-top: 1px solid rgba(0, 0, 0, 0.06);
+
+  background: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.03));
+}
+@keyframes floatDust {
+  0% {
+    transform: translateY(0);
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 0.15;
+  }
+  100% {
+    transform: translateY(-80px);
+    opacity: 0;
+  }
 }
