@@ -2,12 +2,6 @@ import { useEffect, useMemo, useRef, useState } from "react";
 
 /* ===== DATA ===== */
 export const milestones = [
-  {
-    city: "HCM",
-    venue: "Galaxy Kinh Dương Vương",
-    date: "31.03.2026",
-    times: ["10:04", "10:40"],
-  },
   // 01/04
   {
     city: "HCM",
