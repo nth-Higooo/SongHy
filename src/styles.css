@@ -277,7 +277,10 @@ main {
   transform: translate(-50%, -50%);
   color: rgba(201, 168, 76, 0.03);
 }
-
+body.light .ty-bg-char {
+  color: rgba(44, 74, 122, 0.06); /* navy rất nhẹ */
+  text-shadow: 0 0 20px rgba(63, 111, 181, 0.08);
+}
 .ty-card p {
   font-size: 18px;
   line-height: 1.95;
@@ -1009,4 +1012,16 @@ body.light .page-footer {
     transform: translateY(-80px);
     opacity: 0;
   }
+}
+.time-pill.current {
+  color: #39b96f;
+  font-weight: 600;
+}
+
+.time-pill.upcoming {
+  opacity: 0.9;
+}
+
+.time-pill.past {
+  opacity: 0.4;
 }

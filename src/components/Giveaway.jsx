@@ -1,13 +1,13 @@
 const steps = [
-  "Giữ lại vé hoặc ảnh chụp tại rạp.",
-  "Đăng review kèm hashtag chương trình.",
-  "Gửi link bài đăng cho FC để tham gia bốc thăm may mắn.",
+  "Chụp ảnh check in tại poster/booth hoặc chụp vé (Có chữ SHLN).",
+  "Đăng bài review kèm hashtag #SongHyLamNguy #SHLN.",
+  "Điền form link bài đăng review.",
 ];
 
 const gifts = [
-  { icon: "🧧", name: "Túi quà FC" },
-  { icon: "📸", name: "Ảnh ký tặng" },
-  { icon: "🎀", name: "Merchandise" },
+  { icon: "🎫", name: " Landyard Song Hỷ Lâm Nguy " },
+  { icon: "🧳", name: "Tag Vali MisThy" },
+  { icon: "🖼️", name: "Polaroid (limited)" },
 ];
 
 export default function Giveaway() {
