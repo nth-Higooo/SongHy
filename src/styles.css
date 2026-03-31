@@ -789,11 +789,10 @@ body.light {
   --border: rgba(44, 74, 122, 0.1);
   --border-glow: rgba(63, 111, 181, 0.2);
 
-  /* 🎯 BE ĐẬM – ÍT TRẮNG */
   background:
-    radial-gradient(circle at 20% 15%, #f7f4ef, transparent 35%),
-    radial-gradient(circle at 80% 70%, #e4dccf, transparent 55%),
-    linear-gradient(180deg, #ffdea6 0%, #e4ddd2 45%, #f1dbaf 100%);
+    radial-gradient(circle at 20% 15%, #fbf8f2, transparent 35%),
+    radial-gradient(circle at 80% 70%, #eee6d8, transparent 55%),
+    linear-gradient(180deg, #f5e6c8 0%, #ebe4d9 45%, #f4ead8 100%); /* 👈 bỏ cam, chuyển beige */
 
   color: var(--ivory);
 }
