@@ -1,17 +1,20 @@
 :root {
-  --ink: #0d0a08;
-  --ink-mid: #141008;
-  --ink-soft: #1c1610;
-  --ink-card: #2a1f14;
-  --gold: #c9a84c;
-  --gold-bright: #e8c96a;
-  --gold-pale: #f2dfa0;
-  --gold-dim: #7a6128;
-  --ivory: #ede0c4;
-  --ivory-muted: #b8a882;
-  --ivory-dim: #7a6e57;
-  --border: rgba(201, 168, 76, 0.18);
-  --border-glow: rgba(232, 201, 106, 0.45);
+  --ink: #14100c; /* 👈 từ #0d0a08 */
+  --ink-mid: #1c160f;
+  --ink-soft: #241c14;
+  --ink-card: #33261a;
+
+  --gold: #d4b45a; /* 👈 sáng hơn nhẹ */
+  --gold-bright: #f2d57c;
+  --gold-pale: #f6e7b8;
+  --gold-dim: #8a6f2f;
+
+  --ivory: #f2e7cf; /* 👈 chữ sáng hơn */
+  --ivory-muted: #c5b693;
+  --ivory-dim: #8c7f66;
+
+  --border: rgba(212, 180, 90, 0.22); /* 👈 rõ hơn */
+  --border-glow: rgba(242, 213, 124, 0.5);
 }
 .theme-toggle {
   position: fixed;
@@ -77,9 +80,15 @@ html {
 
 body {
   background:
-    radial-gradient(circle at 30% 20%, #3a0000, transparent 45%),
-    radial-gradient(circle at 70% 60%, #2a0000, transparent 55%),
-    linear-gradient(180deg, #120000 0%, #1a0000 40%, #050000 100%);
+    radial-gradient(circle at 30% 20%, #4a0000, transparent 45%),
+    /* 👈 sáng hơn */
+    radial-gradient(circle at 70% 60%, #3a0000, transparent 55%),
+    linear-gradient(
+      180deg,
+      #1a0000 0%,
+      #220000 40%,
+      #0a0000 100%
+    ); /* 👈 nâng sáng */
   color: var(--ivory);
   font-family: "Grenze", serif;
   min-height: 100vh;
@@ -216,8 +225,8 @@ main {
   background: linear-gradient(
     to right,
     transparent,
-    var(--gold-dim),
-    transparent
+    rgba(212, 180, 90, 0.6),
+    /* 👈 tăng visibility */ transparent
   );
 }
 
@@ -263,10 +272,11 @@ main {
 .ty-card,
 .ga-card,
 .m-card {
-  background: linear-gradient(160deg, #2a1f14, #1c140c);
+  background: linear-gradient(160deg, #35281b, #241a12); /* 👈 sáng hơn */
+
   box-shadow:
-    0 0 0 1px rgba(201, 168, 76, 0.08),
-    0 8px 30px rgba(0, 0, 0, 0.6);
+    0 0 0 1px rgba(212, 180, 90, 0.12),
+    /* 👈 rõ border */ 0 8px 30px rgba(0, 0, 0, 0.55);
 }
 
 .ty-bg-char {
@@ -318,13 +328,6 @@ body.light .ty-bg-char {
   letter-spacing: 0.1em;
   color: var(--gold);
   text-transform: uppercase;
-}
-
-.giveaway-step {
-  display: flex;
-  gap: 16px;
-  padding: 14px;
-  border: 1px solid var(--border);
 }
 
 /* ===== ROADMAP CONTAINER ===== */
@@ -416,11 +419,11 @@ body.light .ty-bg-char {
 }
 
 .time-pill {
-  padding: 4px 8px;
+  padding: 2px 10px;
   border-radius: 999px;
-  font-size: 12px;
-  background: rgba(255, 255, 255, 0.12); /* 👈 tăng từ 0.08 */
-  border: 1px solid rgba(255, 255, 255, 0.25);
+  font-size: 15px;
+  background: rgba(255, 255, 255, 0.16); /* 👈 tăng từ 0.12 */
+  border: 1px solid rgba(255, 255, 255, 0.3);
   backdrop-filter: blur(6px);
 }
 .time-pill.active {
@@ -623,7 +626,7 @@ body.light .ty-bg-char {
   align-items: flex-start;
   gap: 16px;
   padding: 14px 16px;
-  background: rgba(255, 255, 255, 0.025);
+  background: rgba(255, 255, 255, 0.035);
   border: 1px solid var(--border);
   border-radius: 2px;
   transition: 0.25s;
@@ -886,12 +889,12 @@ body.light .tag-tbd {
 }
 body.light .time-pill {
   background: rgba(44, 74, 122, 0.08);
-  border: 1px solid rgba(44, 74, 122, 0.2);
+  border: 1px solid rgba(77, 145, 255, 0.2);
 }
 body.light .time-pill.active {
-  background: linear-gradient(135deg, #254c86, #6fa8ff);
+  background: linear-gradient(135deg, #0e2241, #0164f8);
   color: white;
-  box-shadow: 0 0 10px rgba(63, 111, 181, 0.4);
+  box-shadow: 0 0 10px rgba(142, 187, 255, 0.4);
 }
 body.light .jump-nearest {
   position: absolute;
@@ -920,37 +923,16 @@ body.light .jump-nearest {
   transition: all 0.25s ease;
 }
 body.light .btn-detail {
-  width: 100%;
-  padding: 15px;
-
-  background: #2c4a7a; /* navy đậm */
-  color: #fff;
-
+  background: transparent; /* giống dark */
+  color: #2c4a7a;
   border: 1px solid #2c4a7a;
 
-  font-family: "Grenze", serif;
-  font-size: 15px;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-
-  border-radius: 4px;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-
-  cursor: pointer;
-
-  transition: all 0.25s ease;
-
-  box-shadow: 0 6px 16px rgba(44, 74, 122, 0.25);
+  box-shadow: 0 4px 12px rgba(44, 74, 122, 0.15);
 }
 body.light .btn-detail:hover {
-  background: #3f6fb5; /* navy sáng hơn */
-  border-color: #3f6fb5;
-
-  box-shadow: 0 8px 22px rgba(63, 111, 181, 0.35);
+  color: #fff;
+  border-color: #2c4a7a;
+  box-shadow: 0 0 18px rgba(63, 111, 181, 0.35);
 }
 body.light .btn-detail svg {
   opacity: 0.9;
@@ -968,7 +950,9 @@ body.light .btn-detail::after {
   opacity: 0;
   transition: opacity 0.3s;
 }
-
+body.light .btn-detail::before {
+  background: #2c4a7a; /* màu fill */
+}
 body.light .gift-item {
   aspect-ratio: 1;
 

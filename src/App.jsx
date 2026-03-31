@@ -9,14 +9,13 @@ import Footer from "./components/Footer";
 import { Icon } from "@iconify/react";
 
 export default function App() {
-  const [isLight, setIsLight] = useState(false);
-
-  useEffect(() => {
+  const [isLight, setIsLight] = useState(() => {
     const saved = localStorage.getItem("theme");
-    if (saved === "light") {
-      setIsLight(true);
-    }
-  }, []);
+
+    if (saved) return saved === "light";
+
+    return true;
+  });
 
   useEffect(() => {
     document.body.classList.toggle("light", isLight);
