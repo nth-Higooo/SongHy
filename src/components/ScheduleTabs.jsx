@@ -157,62 +157,72 @@ export default function ScheduleTabsPro() {
   if (!activeDate) return null;
 
   return (
-    <div className="schedule">
-      {/* ===== DATE TABS ===== */}
-      <div className="schedule-tabs">
-        {dates.map((d) => (
-          <button
-            key={d}
-            className={`schedule-tab ${d === activeDate ? "active" : ""}`}
-            onClick={() => setActiveDate(d)}
-          >
-            {formatDateDisplay(d)}
-          </button>
-        ))}
+    <div className="roadmap-section">
+      <div className="roadmap-heading center">
+        <h2>Lịch Cinetour</h2>
+        <p>
+          <span className="live-dot"></span>
+          Cập nhật liên tục
+          <span className="live-dot"></span>
+        </p>
       </div>
+      <div className="schedule">
+        {/* ===== DATE TABS ===== */}
+        <div className="schedule-tabs">
+          {dates.map((d) => (
+            <button
+              key={d}
+              className={`schedule-tab ${d === activeDate ? "active" : ""}`}
+              onClick={() => setActiveDate(d)}
+            >
+              {formatDateDisplay(d)}
+            </button>
+          ))}
+        </div>
 
-      {/* ===== LIST ===== */}
-      <div className="schedule-list">
-        {grouped[activeDate].map((m, i) => {
-          const status = getEventStatus(m.date, m.times, now);
+        {/* ===== LIST ===== */}
+        <div className="schedule-list">
+          {grouped[activeDate].map((m, i) => {
+            const status = getEventStatus(m.date, m.times, now);
 
-          return (
-            <div key={i} className={`schedule-card ${status}`}>
-              {/* TAG */}
-              <div className="schedule-card-header">
-                <div className="schedule-venue">
-                  {m.venue} <span>({m.city})</span>
+            return (
+              <div key={i} className={`schedule-card ${status}`}>
+                {/* TAG */}
+                <div className="schedule-card-header">
+                  <div className="schedule-venue">
+                    {m.venue} <span>({m.city})</span>
+                  </div>
+
+                  <div className={`tag tag-${status}`}>
+                    {status === "past"
+                      ? "Đã diễn ra"
+                      : status === "current"
+                        ? "Đang diễn ra"
+                        : status === "upcoming"
+                          ? "Sắp tới"
+                          : "Đang cập nhật"}
+                  </div>
                 </div>
 
-                <div className={`tag tag-${status}`}>
-                  {status === "past"
-                    ? "Đã diễn ra"
-                    : status === "current"
-                      ? "Đang diễn ra"
-                      : status === "upcoming"
-                        ? "Sắp tới"
-                        : "Đang cập nhật"}
+                <div className="schedule-times">
+                  {m.times?.map((t, idx) => {
+                    const info = getTimeStatus(m.date, t, now);
+                    const isNearest =
+                      m.date === nearest.date && t === nearest.time;
+                    return (
+                      <span
+                        key={idx}
+                        className={`time-pill ${info.type} ${isNearest ? "active" : ""}`}
+                      >
+                        {info.label}
+                      </span>
+                    );
+                  })}
                 </div>
               </div>
-
-              <div className="schedule-times">
-                {m.times?.map((t, idx) => {
-                  const info = getTimeStatus(m.date, t, now);
-                  const isNearest =
-                    m.date === nearest.date && t === nearest.time;
-                  return (
-                    <span
-                      key={idx}
-                      className={`time-pill ${info.type} ${isNearest ? "active" : ""}`}
-                    >
-                      {info.label}
-                    </span>
-                  );
-                })}
-              </div>
-            </div>
-          );
-        })}
+            );
+          })}
+        </div>
       </div>
     </div>
   );

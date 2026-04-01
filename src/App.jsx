@@ -32,7 +32,7 @@ export default function App() {
       <Poster />
       <FilmStrip />
       <ThankYou />
-      <Giveaway />
+      {/* <Giveaway /> */}
       {/* <Roadmap /> */}
       <ScheduleTabs />
       <FilmStrip />
