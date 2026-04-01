@@ -7,6 +7,7 @@ import Giveaway from "./components/Giveaway";
 import Roadmap from "./components/Roadmap";
 import Footer from "./components/Footer";
 import { Icon } from "@iconify/react";
+import ScheduleTabs from "./components/ScheduleTabs";
 
 export default function App() {
   const [isLight, setIsLight] = useState(() => {
@@ -28,12 +29,12 @@ export default function App() {
       <button className="theme-toggle" onClick={() => setIsLight(!isLight)}>
         <Icon icon="line-md:light-dark" width={18} />
       </button>
-
       <Poster />
       <FilmStrip />
       <ThankYou />
       <Giveaway />
-      <Roadmap />
+      {/* <Roadmap /> */}
+      <ScheduleTabs />
       <FilmStrip />
       <Footer />
     </main>

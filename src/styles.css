@@ -16,6 +16,7 @@
   --border: rgba(212, 180, 90, 0.22); /* 👈 rõ hơn */
   --border-glow: rgba(242, 213, 124, 0.5);
 }
+
 .theme-toggle {
   position: fixed;
   top: 20px;
@@ -292,7 +293,7 @@ body.light .ty-bg-char {
   text-shadow: 0 0 20px rgba(63, 111, 181, 0.08);
 }
 .ty-card p {
-  font-size: 18px;
+  font-size: 22px;
   line-height: 1.95;
   color: var(--ivory-muted);
 }
@@ -324,7 +325,7 @@ body.light .ty-bg-char {
 }
 
 .ga-eyebrow {
-  font-size: 18px;
+  font-size: 25px;
   letter-spacing: 0.1em;
   color: var(--gold);
   text-transform: uppercase;
@@ -595,7 +596,7 @@ body.light .ty-bg-char {
 .page-footer {
   text-align: center;
   padding: 16px;
-  font-size: 12px;
+  font-size: 15px;
   letter-spacing: 0.14em;
   color: rgba(179, 156, 102, 0.678);
 }
@@ -606,7 +607,7 @@ body.light .ty-bg-char {
 }
 
 .ga-desc {
-  font-size: 15px;
+  font-size: 20px;
   color: var(--ivory-dim);
   margin-bottom: 22px;
   line-height: 1.7;
@@ -646,14 +647,14 @@ body.light .ty-bg-char {
   align-items: center;
   justify-content: center;
   font-family: "Estonia", cursive;
-  font-size: 18px;
+  font-size: 28px;
   color: var(--gold);
   flex-shrink: 0;
-  margin-top: 2px;
+  margin-top: 5px;
 }
 
 .step-content {
-  font-size: 15px;
+  font-size: 20px;
   line-height: 1.6;
   color: var(--ivory);
   font-weight: 300;
@@ -662,7 +663,7 @@ body.light .ty-bg-char {
 
 /* GIFTS */
 .gift-label {
-  font-size: 11px;
+  font-size: 20px;
   letter-spacing: 0.18em;
   color: var(--gold-dim);
   text-transform: uppercase;
@@ -713,7 +714,7 @@ body.light .ty-bg-char {
 }
 
 .name {
-  font-size: 11px;
+  font-size: 18px;
   color: var(--ivory-muted);
   text-align: center;
 }
@@ -1007,4 +1008,116 @@ body.light .page-footer {
 
 .time-pill.past {
   opacity: 0.4;
+}
+/* ===== TABS ===== */
+.schedule-tabs {
+  display: flex;
+  gap: 10px;
+  overflow-x: auto;
+  padding: 15px 20px;
+}
+
+.schedule-tab {
+  font-family: "Estonia", cursive;
+  font-weight: 600;
+  flex-shrink: 0;
+  padding: 8px 12px;
+  font-size: 25px;
+  border-radius: 20px;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--ivory-dim);
+  cursor: pointer;
+  transition: 0.25s;
+}
+
+.schedule-tab.active {
+  background: var(--gold);
+  color: var(--ink);
+  border-color: var(--gold);
+}
+
+/* ===== LIST ===== */
+.schedule-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 10px 16px 40px;
+}
+
+/* ===== CARD ===== */
+.schedule-card {
+  padding: 16px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: linear-gradient(160deg, #322417, #20160d);
+}
+
+/* venue */
+.schedule-venue {
+  font-size: 16px;
+  color: var(--gold-bright);
+  margin-bottom: 10px;
+}
+
+.schedule-venue span {
+  font-size: 13px;
+  color: var(--ivory-dim);
+}
+
+/* times */
+.schedule-times {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.time-pill.current {
+  background: linear-gradient(135deg, #ffe08a, #ffd000);
+  color: #2a1f14;
+  box-shadow: 0 0 10px rgba(255, 200, 0, 0.5);
+}
+
+.time-pill.upcoming {
+  opacity: 0.95;
+}
+
+.time-pill.past {
+  opacity: 0.4;
+}
+/* ===== LIGHT FIX FOR SCHEDULE ===== */
+body.light .schedule-card {
+  background: linear-gradient(160deg, #ffffff, #f4f7ff);
+  border: 1px solid var(--border);
+  box-shadow: 0 6px 20px rgba(44, 74, 122, 0.08);
+}
+
+body.light .schedule-venue {
+  color: var(--gold-bright);
+}
+
+body.light .schedule-tab {
+  color: var(--ivory-dim);
+  border: 1px solid rgba(44, 74, 122, 0.15);
+}
+
+body.light .schedule-tab.active {
+  background: var(--gold-bright);
+  color: white;
+  border-color: var(--gold-bright);
+}
+.schedule-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+}
+
+.schedule-venue {
+  font-size: 16px;
+  color: var(--gold-bright);
+}
+
+/* tag bên phải */
+.schedule-card-header .tag {
+  white-space: nowrap;
 }
