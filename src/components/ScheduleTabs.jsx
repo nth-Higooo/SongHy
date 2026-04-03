@@ -13,7 +13,7 @@ function parseDateTime(dateStr, timeStr) {
   return new Date(y, m - 1, d, h, min);
 }
 
-function isWithinNextDays(dateStr, now, days = 4) {
+function isWithinNextDays(dateStr, now, days = 3) {
   const match = dateStr.match(/(\d{2})\.(\d{2})\.(\d{4})/);
   if (!match) return false;
 
