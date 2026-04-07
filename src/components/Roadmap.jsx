@@ -143,24 +143,7 @@ export const milestones = [
   },
 
   // 08/04
-  {
-    city: "HCM",
-    venue: "CGV AEON Bình Tân",
-    date: "08.04.2026",
-    times: ["18:40"],
-  },
-  {
-    city: "HCM",
-    venue: "CGV Celadon Tân Phú",
-    date: "08.04.2026",
-    times: ["19:30", "20:00"],
-  },
-  {
-    city: "HCM",
-    venue: "Galaxy Tân Bình",
-    date: "08.04.2026",
-    times: ["21:00", "21:30"],
-  },
+  
 ];
 
 /* ===== HELPERS ===== */
